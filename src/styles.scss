@@ -1,1 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+button {
+    box-shadow: none !important;
+}
+
+.form-group {
+    margin-bottom: 1em;
+
+    label {
+        margin-bottom: 5px;
+        font-weight: 500;
+    }
+}
+
+input, select {
+    padding: 0.7em !important;
+    font-size: 20px !important;
+    border-radius: 20px !important;
+    outline: none !important;
+    box-shadow: none !important;
+    transition: all .2s ease-out !important;
+
+    &:focus {
+        box-shadow: 2px 2px 15px -4px lightgrey !important;
+        border-color: transparent !important;
+    }
+}
+
+.form-btn {
+    width: 145px;
+    height: 50px;
+    float: right;
+}

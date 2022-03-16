@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Edit Category</h4>
+            <form class="forms-sample mt-5" [formGroup]="categoryForm" (ngSubmit)="updateCategory()">
+                <input type="text" hidden formControlName="id">
+              <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" formControlName="name" required>
+              </div>
+
+              <div class="form-group">
+                <label>Type</label>
+                <select class="form-select" aria-label="Default select example"  formControlName="type">
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+              </div>
+
+                <div>
+                    <button class="btn btn-dark mt-3 form-btn" type="submit" [disabled]="categoryForm.invalid">
+                        Submit
+                    </button>
+                </div>
+              
+            </form>
+          </div>
+        </div>
+      </div>
+</div>

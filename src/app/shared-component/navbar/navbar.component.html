@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/home">Book<strong>Library</strong></a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a [hidden]="isCategory()" class="nav-link btn btn-secondary active" aria-current="page" routerLink="/category">Books Category</a>
+        <a [hidden]="isBooks()" class="nav-link btn btn-secondary active" aria-current="page" routerLink="/home">All Books</a>
+      </div>
+    </div>
+    
+  </div>
+</nav>
