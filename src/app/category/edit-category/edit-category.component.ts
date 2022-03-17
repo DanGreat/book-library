@@ -20,7 +20,6 @@ export class EditCategoryComponent implements OnInit {
                 this.categoryForm = this.form_builder.group({
                   id: [''],
                   name: ['', Validators.required],
-                  type: ['', Validators.required],
                 })
   }
 
@@ -37,8 +36,7 @@ export class EditCategoryComponent implements OnInit {
           console.log('To pathch: ', data)
           this.categoryForm.patchValue({
             id: data.id,
-            name: data.first_name,
-            type: data.last_name
+            name: data.name,
           })
         },
         error: (e) => console.error(e),
@@ -54,7 +52,7 @@ export class EditCategoryComponent implements OnInit {
       {
         next: (data: any) => {
           console.log('Mess: ', data)
-          this.router.navigate(['home'])
+          this.router.navigate(['category'])
           this.isLoading = false
         },
         error: (e) => console.error(e),

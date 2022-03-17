@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import * as feather from 'feather-icons';
 import { Subscription } from 'rxjs';
+import { Category } from '../model/category';
 import { RequestService } from '../services/request.service';
 
 @Component({
@@ -12,7 +13,8 @@ import { RequestService } from '../services/request.service';
 export class CategoryComponent implements OnInit {
 
   isLoading: boolean = false
-  books: any
+  categories: any
+  allCategories: any
   categoriesSubscription = new Subscription;
 
   constructor(private request_service: RequestService, 
@@ -28,9 +30,15 @@ export class CategoryComponent implements OnInit {
   }
 
   getCategories() {
+    this.isLoading = true;
     this.categoriesSubscription = this.request_service.getCategories().subscribe(
       {
-        next: (data) => console.log('Data: ', data),
+        next: (data) => {
+          console.log('Categories: ', data);
+          this.categories = data
+          this.allCategories = this.categories
+          this.isLoading = false;
+        },
         error: (e) => console.error(e),
         complete: () => console.info('complete') 
       }
@@ -49,11 +57,26 @@ export class CategoryComponent implements OnInit {
   deleteCategory(id: number){
     this.request_service.deleteCategory(id).subscribe(
       {
-        next: (data) => console.log('Data: ', data),
+        next: (data) => {
+          alert('Deleted Succesfully!')
+        },
         error: (e) => console.error(e),
-        complete: () => console.info('complete') 
+        complete: () => {
+          this.getCategories()
+        }
       }
     );
+  }
+
+  filterCategories(ev: any) {
+    const value = ev.target.value;
+    if(value == 'true'){
+      this.categories = this.allCategories.filter((category: any) => category?.isFavorite );
+    } else if(value == 'false') {
+      this.categories = this.allCategories.filter((category: any) => !category?.isFavorite);
+    } else {
+      this.categories = this.allCategories
+    }
   }
 
   ngOnDestroy(){

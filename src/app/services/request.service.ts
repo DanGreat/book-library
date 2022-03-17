@@ -10,81 +10,50 @@ import { Category } from '../model/category';
 export class RequestService {
 
   private baseURL = environment.baseUrl
-  private token: string
   
-  constructor(private http: HttpClient) { 
-    this.token = '123'
-  }
-
-  getHeaders() {
-    return new HttpHeaders({
-      Authorization: `Bearer ${this.token}`,
-    });
-  }
+  constructor(private http: HttpClient) { }
 
   // Books Request
 
   getBook(id: number) {
-    const headers = this.getHeaders();
-    return this.http.get(`${this.baseURL}/book/${id}`, { headers });
+    return this.http.get(`${this.baseURL}/books/${id}`);
   }
 
   getBooks() {
-    const headers = this.getHeaders();
-    return this.http.get(`${this.baseURL}/book`, { headers });
+    return this.http.get(`${this.baseURL}/books`);
   }
 
   addBook(body: Book) {
-    const headers = this.getHeaders();
-    return this.http.post(`${this.baseURL}/book`, body, {
-      headers,
-    });
+    return this.http.post(`${this.baseURL}/books`, body);
   }
 
   updateBook(id: number, parameters: Book) {
-    const headers = this.getHeaders();
-    return this.http.put(`${this.baseURL}/book/${id}/`, parameters, {
-      headers,
-    });
+    return this.http.put(`${this.baseURL}/books/${id}/`, parameters);
   }
 
   deleteBook(id: number) {
-    const headers = this.getHeaders();
-    return this.http.delete(`${this.baseURL}/book/${id}/`, {
-      headers,
-    });
+    return this.http.delete(`${this.baseURL}/books/${id}/`);
   }
 
   // Category Request
 
   getCategory(id: number) {
-    const headers = this.getHeaders();
-    return this.http.get(`${this.baseURL}/category/${id}`, { headers });
+    return this.http.get(`${this.baseURL}/categories/${id}`);
   }
 
   getCategories() {
-    const headers = this.getHeaders();
-    return this.http.get(`${this.baseURL}/category`, { headers });
+    return this.http.get(`${this.baseURL}/categories`);
   }
 
   addCategory(body: Category) {
-    const headers = this.getHeaders();
-    return this.http.post(`${this.baseURL}/category`, body, {
-      headers,
-    });
+    return this.http.post(`${this.baseURL}/categories`, body);
   }
 
   updateCategory(id: number, parameters: Category) {
-    const headers = this.getHeaders();
-    return this.http.put(`${this.baseURL}/category/${id}/`, parameters, {
-      headers,
-    });
+    return this.http.put(`${this.baseURL}/categories/${id}/`, parameters);
   }
 
   deleteCategory(id: number) {
-    const headers = this.getHeaders();
-    return this.http.delete(`${this.baseURL}/category/${id}/`, {
-      headers,
-    });
+    return this.http.delete(`${this.baseURL}/categories/${id}/`);
   }
 }

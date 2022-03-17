@@ -5,6 +5,11 @@ button {
     box-shadow: none !important;
 }
 
+.form-check-label {
+    margin-top: 0.5em;
+    margin-left: 0.5em;
+}
+
 .form-group {
     margin-bottom: 1em;
 
@@ -33,3 +38,69 @@ input, select {
     height: 50px;
     float: right;
 }
+
+.lds-dual-ring-btn{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+  }
+  
+  .lds-dual-ring-btn:after{
+    content: " ";
+    display: block;
+    width: 1.6em;
+    height: 1.6em;
+    margin-top: 1px;
+    margin-left: 10px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+  }
+  
+  .lds-dual-fetching{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+  }
+  
+  .lds-dual-fetching:after{
+    content: " ";
+    display: block;
+    width: 1.6em;
+    height: 1.6em;
+    margin-top: 1px;
+    margin-left: 10px;
+    border-radius: 50%;
+    border: 6px solid #212529;
+      border-color: #212529 transparent #212529 transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+  }
+  
+  .lds-dual-ring {
+      display: inline-block;
+      width: 80px;
+      height: 80px;
+      margin: 0 auto;
+  }
+  
+    .lds-dual-ring:after{
+      content: " ";
+      display: block;
+      width: 64px;
+      height: 64px;
+      margin: 8px;
+      border-radius: 50%;
+      border: 6px solid #212529;
+      border-color: #212529 transparent #212529 transparent;
+      animation: lds-dual-ring 1.2s linear infinite;
+    }
+  
+    @keyframes lds-dual-ring {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }

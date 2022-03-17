@@ -19,10 +19,8 @@ export class EditBookComponent implements OnInit {
               private requestService: RequestService) { 
                 this.bookForm = this.form_builder.group({
                   id: [''],
-                  title: ['', Validators.required],
-                  author: ['', Validators.required],
-                  year: ['', Validators.required],
-                  category: ['', Validators.required]
+                  name: ['', Validators.required],
+                  isFavorite: ['', Validators.required]
                 })
   }
 
@@ -39,10 +37,8 @@ export class EditBookComponent implements OnInit {
           console.log('To pathch: ', data)
           this.bookForm.patchValue({
             id: data.id,
-            title: data.first_name,
-            author: data.last_name,
-            year: data.email,
-            category: data.phone_number,
+            name: data.name,
+            isFavorite: data.isFavorite,
           })
         },
         error: (e) => console.error(e),

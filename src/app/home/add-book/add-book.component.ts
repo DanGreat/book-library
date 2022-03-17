@@ -16,10 +16,8 @@ export class AddBookComponent implements OnInit {
   constructor( private form_builder: FormBuilder,
               private request_service: RequestService ) { 
     this.bookForm = this.form_builder.group({
-      title: ['', Validators.required],
-      author: ['', Validators.required],
-      year: ['', Validators.required],
-      category: ['', Validators.required]
+      name: ['', Validators.required],
+      isFavorite: ['', Validators.required],
     })
   }
 
@@ -37,7 +35,7 @@ export class AddBookComponent implements OnInit {
           this.bookForm.reset()
         },
         error: (e) => console.error(e),
-        complete: () => console.info('complete') 
+        complete: () => alert('Created Successfully!') 
       }
     )
 

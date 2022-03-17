@@ -18,7 +18,6 @@ export class AddCategoryComponent implements OnInit {
 
     this.categoryForm = this.form_builder.group({
       name: ['', Validators.required],
-      type: ['', Validators.required]
     })
   }
 
@@ -30,9 +29,12 @@ export class AddCategoryComponent implements OnInit {
     const body: Category = this.categoryForm.value
     this.request_service.addCategory(body).subscribe(
       {
-        next: (data) => console.log('Data: ', data),
+        next: (data) => {
+          this.isLoading = false;
+          this.categoryForm.reset()
+        },
         error: (e) => console.error(e),
-        complete: () => console.info('complete') 
+        complete: () => alert('Created Successfully!') 
       }
     )
   }

@@ -11,8 +11,10 @@ import * as feather from 'feather-icons';
 })
 export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  isLoading: boolean = false
+  isLoading: boolean = true
   books: any
+  allBooks: any;
+  filteredBooks: any;
   bookSubscription = new Subscription;
 
   constructor(private request_service: RequestService, 
@@ -28,11 +30,18 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getBooks() {
+    this.isLoading = true;
     this.bookSubscription = this.request_service.getBooks().subscribe(
       {
-        next: (data) => console.log('Data: ', data),
+        next: (data) => {
+          console.log('Books: ', data)
+          this.books = data
+          this.allBooks = this.books
+        },
         error: (e) => console.error(e),
-        complete: () => console.info('complete') 
+        complete: () => {
+          this.isLoading = false;
+        } 
       }
     )
 
@@ -49,11 +58,28 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   deleteBook(id: number){
     this.request_service.deleteBook(id).subscribe(
       {
-        next: (data) => console.log('Data: ', data),
+        next: (data) => {
+          alert('Deleted Successfully!')
+        },
         error: (e) => console.error(e),
-        complete: () => console.info('complete') 
+        complete: () => {
+          this.getBooks();
+        }
       }
     );
+  }
+
+  filterBooks(ev: any) {
+    const value = ev.target.value;
+    if(value == 'true'){
+      this.books = this.allBooks.filter((book: any) => book?.isFavorite );
+    } else if(value == 'false') {
+      this.books = this.allBooks.filter((book: any) => !book?.isFavorite );
+    } else {
+      this.books = this.allBooks
+    }
+    
+    
   }
 
   ngOnDestroy(){
